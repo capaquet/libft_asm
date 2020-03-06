@@ -1,0 +1,8 @@
+
+
+count = 0
+load adresse + count
+Or 0x00 pour verifier si egal a zero 
+count ++ sur un autre registre
+jump to next registre
+or return count
