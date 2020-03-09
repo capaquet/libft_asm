@@ -91,15 +91,3 @@ set_neg:
 error:
     xor     rax,rax
     jmp     end
-
-
-
-; erreur :
-;base:   str est vide OK
-;base:   strlen base = 1 OK
-;base:   base contient + ou -
-
-;str:   deux fois le meme char
-;str:   char in str pas dans la base
-
-; deux signes de suite
