@@ -7,12 +7,12 @@ _ft_strlen:
     mov     rbp,rsp
     xor     rax,rax
     
-loop:
+strlen:
     mov     byte cl,[rdi + rax]
     test    cl,cl
     jz      end
     inc     rax
-    jmp     loop
+    jmp     strlen
 
 end:
     leave

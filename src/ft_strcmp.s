@@ -8,17 +8,16 @@ _ft_strcmp:
     xor     rax,rax
     xor     rcx,rcx
 
-loop:
+strcmp:
     mov     cl,[rsi]
     mov     al,[rdi]
     sub     rax,rcx
     jnz     end
     or      cl,cl
-    or      al,al
     jz      end
     inc     rdi
     inc     rsi
-    jmp     loop
+    jmp     strcmp
 
 end:
     leave

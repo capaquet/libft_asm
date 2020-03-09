@@ -7,7 +7,7 @@ _ft_strcpy:
     mov     rbp,rsp
     mov     rax,rdi
     
-loop:
+strcpy:
     mov     byte cl,[rsi]
     test    cl,cl
     mov     byte [rdi], 0x0
@@ -15,7 +15,7 @@ loop:
     mov     byte [rdi],cl
     inc     rdi
     inc     rsi
-    jmp     loop
+    jmp     strcpy
 
 end:
     leave

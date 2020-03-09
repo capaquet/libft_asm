@@ -24,7 +24,8 @@ C_SRC_NAME =	$(C_SRC)
 C_OBJ_NAME =	$(C_SRC_NAME:%.c=%.o)
 C_OBJS =		$(addprefix $(OBJ_PATH),$(C_OBJ_NAME))
 
-S_SRC = 		ft_strlen.s ft_strcpy.s ft_strcmp.s
+S_SRC = 		ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s \
+				ft_strdup.s ft_atoi_base.s
 S_SRC_NAME =	$(S_SRC)
 S_OBJ_NAME =	$(S_SRC_NAME:%.s=%.o)
 S_OBJS =		$(addprefix $(OBJ_PATH),$(S_OBJ_NAME))
