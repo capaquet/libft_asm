@@ -5,6 +5,7 @@ global _ft_atoi_base
 _ft_atoi_base:
     push    rbp
     mov     rbp,rsp
+    push    rbx
     xor     rax,rax
     xor     rbx,rbx
     xor     rdx,rdx
@@ -12,7 +13,7 @@ _ft_atoi_base:
 check_base_not_null_not_empty:
     test    rsi,rsi
     jz      error
-    mov     byte cl,[rsi]
+    mov     cl, byte [rsi]
     test    cl,cl
     jz      error
     mov     cl,[rsi + 1]
@@ -21,13 +22,13 @@ check_base_not_null_not_empty:
     xor     cl,cl
 
 check_base_valid_char:
-    mov     byte cl,[rsi + rdx]    
+    mov     cl, byte [rsi + rdx]    
     cmp     cl,45
     je      error
     cmp     cl,43
     je      error
     inc     rdx
-    mov     byte cl,[rsi + rdx]
+    mov     cl, byte [rsi + rdx]
     test    cl,cl
     jnz     check_base_valid_char
     xor     rdx,rdx        
@@ -35,57 +36,58 @@ check_base_valid_char:
 check_str_not_null_not_empty:
     test    rsi,rdi
     jz      error
-    mov     byte cl,[rdi]
+    mov     cl, byte [rdi]
     test    cl,cl
     jz      error
     xor     cl,cl
 
 check_pos:
-    mov     byte cl,[rsi]    
+    mov     cl, byte [rsi]    
     cmp     cl,43
     jne     check_neg
     inc     rdi
     jmp     atoi_base
 
 check_neg:
-    mov     byte cl,[rsi]    
+    mov     cl, byte [rsi]    
     cmp     cl,45
     je      atoi_base
-    mov     r15,-1
+    mov     r10,-1
     inc     rdi  
 
 atoi_base:
-    mov     r12,10
-    mul     r12
+    mov     r11,10
+    mul     r11
     xor     rdx,rdx
 
 search_char:
-    mov     byte cl,[rsi + rdx]
-    cmp     byte cl,[rdi + rbx]
+    mov     cl, byte [rsi + rdx]
+    cmp     cl, byte [rdi + rbx]
     jne     next_char
     add     rax,rdx
     inc     rbx
-    mov     byte cl,[rdi + rbx]
+    mov     cl, byte [rdi + rbx]
     test    cl,cl
     jz      end
     jmp     atoi_base
 
 next_char:
     inc     rdx
-    mov     cl,[rsi + rdx]
+    mov     cl, byte [rsi + rdx]
     test    cl,cl
     jz      error
     jmp     search_char
 
 end:
-    cmp     r15,-1
+    cmp     r10,-1
     je      set_neg
+    pop     rbx
     leave
     ret
 
 set_neg:
-    mul     r15
-    xor     r15,r15
+    mul     r10
+    xor     r10,r10
     jmp     end
 
 error:

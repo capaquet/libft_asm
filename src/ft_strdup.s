@@ -8,6 +8,7 @@ extern _ft_strcpy
 _ft_strdup:
     push    rbp
     mov     rbp,rsp
+    push    rbx
 
 strdup:
     mov     rbx,rdi
@@ -21,5 +22,6 @@ strdup:
     call    _ft_strcpy
 
 end:
+    pop     rbx
     leave
     ret
